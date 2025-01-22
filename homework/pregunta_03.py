@@ -15,3 +15,17 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+    registros={}
+    with open("files/input/data.csv", "r" , encoding= "utf-8") as archivo:
+        for line in archivo:
+            columnas=line.strip().split("\t")
+            inicial=columnas[0]
+            valor=int(columnas[1])
+            if inicial in registros:
+                registros[inicial] += valor
+            else:
+                registros[inicial] = valor
+    resultado=sorted(registros.items())
+    return resultado
+
+print(pregunta_03())

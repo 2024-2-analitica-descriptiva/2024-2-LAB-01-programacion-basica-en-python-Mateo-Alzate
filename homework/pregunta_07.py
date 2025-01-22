@@ -25,3 +25,22 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+    registros={}
+    with open("files/input/data.csv", "r" , encoding= "utf-8") as archivo:
+        for line in archivo:
+            columnas = line.strip().split("\t")
+            inicial=columnas[0]
+            valor=int(columnas[1])
+            if valor in registros:
+                registros[valor].append(inicial)
+            else:
+                registros[valor]=[inicial]
+    resultado=[(valor, registros[valor]) for valor in sorted(registros.keys())]
+    return resultado
+
+r2=pregunta_07()
+print("[")
+for tupla in r2:
+    print(f"    {tupla},")
+print("]")
+

@@ -20,3 +20,23 @@ def pregunta_10():
 
 
     """
+    registros = []
+    with open("files/input/data.csv", "r", encoding="utf-8") as archivo:
+        for line in archivo:
+            inicial = line.strip().split("\t")[0]
+            ele4 = line.strip().split("\t")[3].split(",")
+            can4 = len(ele4)
+            ele5 = line.strip().split("\t")[4].split(",")
+            can5 = len(ele5)
+            registros.append((inicial, can4, can5))
+    return registros
+
+TO_PRINT = "[\n"
+resultado_funcion = pregunta_10()
+for tupla in resultado_funcion:
+    TO_PRINT += f"  {tupla},\n"
+TO_PRINT += "]"
+print(TO_PRINT)
+
+
+

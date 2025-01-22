@@ -15,3 +15,23 @@ def pregunta_05():
     [('A', 9, 2), ('B', 9, 1), ('C', 9, 0), ('D', 8, 3), ('E', 9, 1)]
 
     """
+    registros={}
+    with open("files/input/data.csv", "r" , encoding= "utf-8") as archivo:
+        for line in archivo:
+            columnas=line.strip().split("\t")
+            inicial=columnas[0]
+            valor=int(columnas[1])
+
+            if inicial in registros:
+                registros[inicial]["max"]= max(registros[inicial]["max"], valor)
+                registros[inicial]["min"]= min(registros[inicial]["min"], valor)
+            else:
+                registros[inicial] = {"max": valor, "min" : valor}
+    resultado=[(inicial, valores["max"], valores["min"]) for inicial, valores in sorted(registros.items())]
+    return resultado
+
+print(pregunta_05())
+
+                
+
+
